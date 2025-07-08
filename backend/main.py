@@ -63,6 +63,13 @@ async def stream_query(req: RequestModel):
                 yield msg.content
 
     return StreamingResponse(token_stream(), media_type="text/plain")
+
+@app.post("/clear_db")
+def clear_db():
+    global agent
+    clear_all_pgvector_data()
+    agent = build_agent()
+    return {"response" : "Database Cleared."}
     
 
     

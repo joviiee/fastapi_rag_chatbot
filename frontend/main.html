@@ -161,6 +161,7 @@
     </div>
 
     <button onclick="uploadPDFs()">Upload</button>
+    <button onclick="clearDb()">Clear Database</button>
   </div>
 
   <div class="main">
@@ -211,6 +212,15 @@
 
       const data = await res.json();
       alert(data.message || "Upload complete.");
+    }
+
+    async function clearDb(){
+      const res = await fetch(`${backendUrl}/clear_db`,{
+        method: "POST",
+      });
+
+      const data = await res.json();
+      alert(data.message || "DB Cleared.");
     }
 
     function appendToLatestMessage(role, content) {
